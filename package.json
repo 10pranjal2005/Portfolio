@@ -1,0 +1,15 @@
+{
+  "name": "portfolio2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "tailwindcss -i ./src/style.css -o ./dist/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "..."
+  }
+}

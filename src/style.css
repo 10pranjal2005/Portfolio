@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  /* Custom gradient from original CSS */
+  body {
+    background: radial-gradient(800px 600px at 80% -10%, rgba(212,160,23,0.05), transparent 70%), var(--tw-bg-opacity, 1) theme(colors.bg);
+  }
+}
+
+@layer components {
+  /* Re-creating .btn as a Tailwind component */
+  .btn {
+    @apply inline-flex py-2.5 px-4 rounded-xl border border-brand-dark bg-gradient-to-b from-panel to-brand-dark text-text font-bold no-underline transition-all duration-300;
+  }
+  .btn:hover {
+    @apply shadow-lg shadow-brand/40 -translate-y-1;
+  }
+
+  /* --- CORRECTED ICON RULES --- */
+  .icon-btn {
+    /* Added text-muted for the default icon color */
+    @apply grid place-items-center w-11 h-11 rounded-full bg-card border border-custom-border text-muted transition-all duration-300;
+  }
+  .icon-btn svg {
+    /* Changed fill-text (v4) to fill-current (v3) */
+    @apply fill-current;
+  }
+  .icon-btn:hover {
+    /* Added text-brand to change the icon color on hover */
+    @apply -translate-y-1 shadow-lg shadow-ring bg-panel border-brand text-brand;
+  }
+  .icon-btn img {
+    @apply w-6 h-6 object-contain rounded-[4px];
+  }
+
+  /* --- NEW SUBSECTION HEADING STYLE --- */
+  .subsection-heading {
+    @apply text-2xl font-semibold text-text; /* Text style */
+    @apply text-center; /* Center align */
+    @apply max-w-md mx-auto; /* Constrain width and center block */
+    @apply py-3 px-6 rounded-xl; /* Box shape */
+    @apply border border-brand-dark; /* Border */
+    @apply bg-gradient-to-b from-panel to-brand-dark; /* Gradient */
+    @apply mb-8 mt-8; /* Spacing */
+    
+    /* Animation */
+    animation: continuous-glow 3s ease-in-out infinite;
+  }
+
+  /* --- UPDATED PROFILE BOX GLOW STYLE --- */
+  .profile-box-glow {
+    /* Base styles from the original div */
+    @apply rounded-3xl border border-custom-border bg-card shadow-2xl shadow-black/40;
+    
+    /* Even Darker Gradient */
+    background: linear-gradient(to bottom, #0a0a0a 0%, #443a1a 100%);
+
+    /* Animation */
+    animation: continuous-glow 3s ease-in-out infinite;
+  }
+  /* --- END OF PROFILE BOX GLOW STYLE --- */
+
+  /* --- NEW AWARD CARD STYLE --- */
+  .award-card {
+    @apply block; /* Make <a> tags behave like blocks */
+    @apply text-center font-semibold text-muted; /* Text styling */
+    @apply p-6 rounded-xl; /* Shape */
+    @apply border border-custom-border; /* Border */
+    /* Light gradient using your theme colors */
+    @apply bg-gradient-to-br from-card to-panel; 
+    @apply transition-all duration-300;
+    @apply no-underline; /* Remove default link underline */
+    
+    /* Re-use the existing glow animation */
+    animation: continuous-glow 3s ease-in-out infinite;
+  }
+  
+  .award-card:hover {
+    @apply -translate-y-1 text-brand; /* Lift and change text color on hover */
+    @apply border-brand; /* Make border glow on hover */
+  }
+
+  /* Style for the non-clickable card to match */
+  .award-card.non-clickable {
+    @apply opacity-70; /* Differentiate it slightly */
+  }
+  .award-card.non-clickable:hover {
+    @apply -translate-y-0 text-muted; /* No hover effect */
+    @apply border-custom-border;
+  }
+  /* --- END OF AWARD CARD STYLE --- */
+
+.timeline {
+  @apply relative pl-6; /* More left padding for spacing */
+}
+
+.timeline::before {
+  content: "";
+  @apply absolute left-[0.5rem] top-0 bottom-0 w-0.5;
+  background: linear-gradient(theme(colors.brand), transparent);
+}
+
+.tl-item {
+  @apply relative mb-8 pl-4; /* Adds bottom margin between items */
+}
+
+.tl-item::before {
+  content: "";
+  @apply absolute left-[-0.45rem] top-[0.6rem] w-3 h-3 rounded-full bg-brand;
+}
+
+  /* Nav separator */
+  nav li:not(:last-child)::after {
+    content: '|';
+    @apply text-brand mx-3 font-normal pointer-events-none;
+  }
+}
+
+/* --- KEYFRAME ANIMATION FOR GLOW --- */
+@keyframes continuous-glow {
+  0%, 100% {
+    /* Corresponds to your 'ring' color */
+    box-shadow: 0 0 15px 2px rgba(212, 160, 23, 0.3); 
+  }
+  50% {
+    /* A brighter, stronger glow */
+    box-shadow: 0 0 25px 6px rgba(212, 160, 23, 0.5); 
+  }
+}
